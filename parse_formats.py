@@ -81,16 +81,29 @@ def write_csv(path, formats):
 def main():
     """docstring for main"""
     output = []
+    format = None
+    container = None
     for f in FORMATS.splitlines():
+        item = {'Resolution': None,
+                'Frame rate': None,
+                'Compression': None,
+                'Format': format,
+                'Container': container,
+                'Bitrate': None}
+
         match = re.findall(REGEX, f)
         if match:
             frame_rates = [x.strip('p*') for x in match[0][1].split('/')]
             for fps in frame_rates:
-                item = {'Resolution': match[0][0].strip(),
-                        'Frame rate': fps,
-                        'Format': match[0][2].strip(),
-                        'Bitrate': match[0][3].strip()}
+                item['Resolution'] = match[0][0].strip()
+                item['Frame rate'] = fps
+                item['Compression'] = match[0][2].strip()
+                item['Bitrate'] = match[0][3].strip()
                 output.append(item)
+        else:
+            container, format = [x.strip() for x in f.split(':')]
+            if container == 'CRM':
+                format = 'Raw'
 
     write_csv('formats.csv', output)
     write_markdown('formats.md', output)
