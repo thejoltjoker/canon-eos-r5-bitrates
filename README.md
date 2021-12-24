@@ -125,4 +125,5 @@ Canon EOS R5 bitrates as a table instead of just flowing text.
 |Full HD Time Lapse|29.97|ALL-I|135|
 |Full HD Time Lapse|25.00|ALL-I|135|
 
-[Source](https://www.canon-europe.com/cameras/eos-r5/specifications/)
+## Source
+All data is gathered from [this](https://www.canon-europe.com/cameras/eos-r5/specifications/) page.
