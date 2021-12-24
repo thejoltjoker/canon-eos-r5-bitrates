@@ -1,7 +1,3 @@
-# Canon EOS R5 bitrates
-Canon EOS R5 bitrates as a table instead of just flowing text.
-
-## Formats & Bitrates
 |Resolution|Frame Rate|Format|Bitrate|
 |-|-|-|-|
 |8k|29.97|Raw|2600|
@@ -124,5 +120,3 @@ Canon EOS R5 bitrates as a table instead of just flowing text.
 |4K Time Lapse|25.00|ALL-I|470|
 |Full HD Time Lapse|29.97|ALL-I|135|
 |Full HD Time Lapse|25.00|ALL-I|135|
-
-[Source](https://www.canon-europe.com/cameras/eos-r5/specifications/)

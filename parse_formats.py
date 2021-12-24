@@ -55,6 +55,18 @@ Full HD (29.97p/25.00p) IPB (Light): Approx. 28 Mbps
 Full HD Time Lapse (29.97p/25.00p) ALL-I: Approx. 135 Mbps"""
 
 
+def write_markdown(path, formats, delimeter='|'):
+    with open(path, mode='w') as md_file:
+        fieldnames = [x.title() for x in list(formats[0])]
+        headers = '|' + delimeter.join(fieldnames) + '|\n'
+
+        md_file.writelines(headers)
+        md_file.writelines('|' + delimeter.join(['-' for x in range(len(fieldnames))]) + '|\n')
+        for f in formats:
+            print(f)
+            md_file.writelines('|' + delimeter.join(f.values()) + '|\n')
+
+
 def write_csv(path, formats):
     with open(path, mode='w') as csv_file:
         fieldnames = list(formats[0])
@@ -62,6 +74,7 @@ def write_csv(path, formats):
 
         writer.writeheader()
         for f in formats:
+            print(f)
             writer.writerow(f)
 
 
@@ -73,13 +86,14 @@ def main():
         if match:
             frame_rates = [x.strip('p*') for x in match[0][1].split('/')]
             for fps in frame_rates:
-                item = {'resolution': match[0][0].strip(),
-                        'fps': fps,
-                        'format': match[0][2].strip(),
-                        'bitrate': match[0][3].strip()}
+                item = {'Resolution': match[0][0].strip(),
+                        'Frame rate': fps,
+                        'Format': match[0][2].strip(),
+                        'Bitrate': match[0][3].strip()}
                 output.append(item)
 
     write_csv('formats.csv', output)
+    write_markdown('formats.md', output)
     pprint(output)
 
 
